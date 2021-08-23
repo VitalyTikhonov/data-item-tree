@@ -1,3 +1,22 @@
-.App {
-  text-align: center;
+.app {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+}
+
+.app__tree {
+  flex-shrink: 0;
+}
+
+// .app__tree-item {
+// }
+
+.app__tree-link {
+  display: block;
+  padding: 7px 0;
+
+  &-active {
+    color: blue;
+    font-weight: bold;
+  }
 }

@@ -1,0 +1,29 @@
+.user {
+  padding: 0 0 0 30px;
+  flex-grow: 1;
+}
+
+.user__headline {
+  margin-top: 0;
+}
+
+// .user__data {
+
+// }
+
+// .user__headline {
+
+// }
+
+// .user__headline_not-found {
+
+// }
+
+.user__row-header {
+  text-align: left;
+  padding-right: 20px;
+}
+
+.user__cell {
+  max-width: 500px;
+}
