@@ -65,7 +65,9 @@ export function User() {
                   <tr ><th className="user__row-header" >Пол</th><td className="user__cell" >{gender}</td></tr>
                   <tr ><th className="user__row-header" >Эл. почта</th><td className="user__cell" >{email}</td></tr>
                   <tr ><th className="user__row-header" >Телефон</th><td className="user__cell" >{phone}</td></tr>
-                  <tr ><th className="user__row-header" >Примечания</th><td className="user__cell" >{doctorNotes}</td></tr>
+                  <tr ><th className="user__row-header" >Примечания</th><td className="user__cell" >
+                    {doctorNotes.map((paragraph) => <p className="user__cell-paragraph" >{paragraph}</p>)}
+                  </td></tr>
                 </Route>
 
                 <Route path={`${url}/meta`} >

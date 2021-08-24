@@ -60,9 +60,18 @@ $br-width: 2px;
 
 .user__row-header {
   text-align: left;
+  vertical-align: top;
   padding-right: 20px;
 }
 
 .user__cell {
   max-width: 500px;
+}
+
+.user__cell-paragraph {
+  margin: 0 0 20px 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
