@@ -14,54 +14,55 @@ function App() {
 
   return (
     <div className="app">
-
-      <ul className="app__tree list-unstyling" >
-        <li className="app__tree-item" key={getUid()} >
-          <NavLink
-            className="app__tree-link link-unstyling"
-            exact to="/"
-            activeClassName="app__tree-link-active"
-          >
-            Главная
-          </NavLink>
-        </li>
-
-        <li className="app__tree-item" key={getUid()} >
-          <NavLink
-            className="app__tree-link link-unstyling"
-            exact to="/dashboard"
-            activeClassName="app__tree-link-active"
-          >
-            Все пользователи
-          </NavLink>
-        </li>
-
-        {categories.map((category) => (
+      <nav className="app__menu" >
+        <ul className="app__tree list-unstyling" >
           <li className="app__tree-item" key={getUid()} >
             <NavLink
               className="app__tree-link link-unstyling"
-              to={`/dashboard/${category.id}`}
-              activeClassName="app__tree-link-active"
+              exact to="/"
+              activeClassName="app__tree-link_active"
             >
-              {category.caption}
+              Главная
             </NavLink>
-
-            <ul className="app__tree app__tree_level_2 list-unstyling" >
-              {dataToRender.filter((user) => user.category.id === category.id).map((item) => (
-                <li className="app__tree-item" key={getUid()} >
-                  <NavLink
-                    className="app__tree-link link-unstyling"
-                    to={`/users/${item.id}`}
-                    activeClassName="app__tree-link-active"
-                  >
-                    {item.firstName} {item.lastName}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
           </li>
-        ))}
-      </ul>
+
+          <li className="app__tree-item" key={getUid()} >
+            <NavLink
+              className="app__tree-link link-unstyling"
+              exact to="/dashboard"
+              activeClassName="app__tree-link_active"
+            >
+              Все пользователи
+            </NavLink>
+          </li>
+
+          {categories.map((category) => (
+            <li className="app__tree-item" key={getUid()} >
+              <NavLink
+                className="app__tree-link link-unstyling"
+                to={`/dashboard/${category.id}`}
+                activeClassName="app__tree-link_active"
+              >
+                {category.caption}
+              </NavLink>
+
+              <ul className="app__tree app__tree_level_2 list-unstyling" >
+                {dataToRender.filter((user) => user.category.id === category.id).map((item) => (
+                  <li className="app__tree-item" key={getUid()} >
+                    <NavLink
+                      className="app__tree-link link-unstyling"
+                      to={`/users/${item.id}`}
+                      activeClassName="app__tree-link_active"
+                    >
+                      {item.firstName} {item.lastName}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </nav>
       <Switch>
         <Route exact path='/' ><h2 className="app__placeholder-headline" >Выберите пункт из списка слева</h2></Route>
         <Route path='/users/:id' component={User} />

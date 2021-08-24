@@ -12,6 +12,11 @@
   }
 }
 
+.app__placeholder-headline {
+  flex-grow: 1;
+  text-align: center;
+}
+
 // .app__tree-item {
 // }
 
@@ -19,7 +24,7 @@
   display: block;
   padding: 7px 0;
 
-  &-active {
+  &_active {
     color: blue;
     font-weight: bold;
   }
