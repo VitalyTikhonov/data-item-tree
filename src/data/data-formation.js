@@ -55,6 +55,13 @@ const emailDomains = [
   "yahoo.com",
 ]
 
+export const categories = [
+  { caption: "Администраторы", id: "admin" },
+  { caption: "Врачи", id: "doctor" },
+  { caption: "Пациенты", id: "patient" },
+  { caption: "Посетители", id: "visitor" },
+]
+
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
     max: 8,
@@ -80,7 +87,7 @@ for (let i = 0; i <= 19; i++) {
       "gender": gender ? 'мужской' : 'женский',
       "firstName": name[0],
       "lastName": name[1],
-      "isAdmin": false,
+      "category": getRandomArrayMember(categories),
       "isEmailVerified": Boolean(getRandomNumber(0, 1)),
       "isBanned": Boolean(getRandomNumber(0, 1)),
       "requestedDeletion": Boolean(getRandomNumber(0, 1)),
@@ -90,6 +97,6 @@ for (let i = 0; i <= 19; i++) {
   )
 }
 
-download(JSON.stringify(data), 'data.json', 'application/json')
+// download(JSON.stringify(data), 'data.json', 'application/json')
 
 export default data

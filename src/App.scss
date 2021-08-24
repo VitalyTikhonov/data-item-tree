@@ -6,6 +6,10 @@
 
 .app__tree {
   flex-shrink: 0;
+
+  &_level_2 {
+    margin-left: 25px;
+  }
 }
 
 // .app__tree-item {

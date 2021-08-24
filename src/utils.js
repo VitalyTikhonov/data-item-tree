@@ -2,8 +2,10 @@ export function getRandomNumber(min, max) {
   const randomNumber = min - 0.5 + Math.random() * (max - min + 1);
   return Math.round(randomNumber);
 }
+
 export function download(data, filename, type) {
-  var file = new Blob([data], { type: type });
+  // https://stackoverflow.com/questions/13405129/javascript-create-and-save-file
+  const file = new Blob([data], { type: type });
   if (window.navigator.msSaveOrOpenBlob) // IE10+
     window.navigator.msSaveOrOpenBlob(file, filename);
   else { // Others
@@ -23,3 +25,8 @@ export function download(data, filename, type) {
 export function getRandomArrayMember(array) {
   return array[getRandomNumber(0, array.length - 1)]
 }
+
+export function verbalizeBoolean(boolean) {
+  return boolean ?  "да" : "нет"
+}
+
