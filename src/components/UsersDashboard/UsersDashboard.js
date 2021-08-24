@@ -2,10 +2,10 @@ import React from 'react';
 import './UsersDashboard.scss';
 import { categories } from '../../data/data-formation';
 import { Link } from "react-router-dom";
-
-const data = JSON.parse(localStorage.getItem('patients'))
+import { v4 as getUid } from 'uuid';
 
 export function UsersDashboard({ match }) {
+  const data = JSON.parse(localStorage.getItem('users'))
   const displayedCategoryId = match?.params?.id
   const dataToRender = displayedCategoryId ? data.filter((item) => item.category.id === displayedCategoryId) : data
 
@@ -25,7 +25,7 @@ export function UsersDashboard({ match }) {
           </tr>
 
           {dataToRender.map((item) => (
-            <tr >
+            <tr key={getUid()} >
               <td className="dashboard__cell" ><Link className="link-unstyling" to={`/users/${item.id}`} >{item.firstName}</Link></td>
               <td className="dashboard__cell" ><Link className="link-unstyling" to={`/users/${item.id}`} >{item.lastName}</Link></td>
               <td className="dashboard__cell" ><Link className="link-unstyling" to={`/users/${item.id}`} >{item.gender}</Link></td>

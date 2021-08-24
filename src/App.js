@@ -9,8 +9,8 @@ import { categories } from './data/data-formation';
 import { v4 as getUid } from 'uuid';
 
 function App() {
-  localStorage.setItem('patients', JSON.stringify(data))
-  const dataToRender = JSON.parse(localStorage.getItem('patients'))
+  localStorage.setItem('users', JSON.stringify(data))
+  const dataToRender = JSON.parse(localStorage.getItem('users'))
 
   return (
     <div className="app">

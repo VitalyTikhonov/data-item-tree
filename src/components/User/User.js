@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './User.scss';
-import { useRouteMatch } from "react-router-dom";
 import { verbalizeBoolean } from '../../utils';
 
-const dataToRender = JSON.parse(localStorage.getItem('patients'))
+const dataToRender = JSON.parse(localStorage.getItem('users'))
 
 export function User({ match }) {
   const user = dataToRender.find((item) => item.id === match.params.id)
-  let { path, url } = useRouteMatch();
 
   /* Отказался от деструктуризации, чтобы обработать ошибку, которая возникает, если задать в адресной строке несуществующий идентификатор. */
   const id = user?.id
@@ -21,8 +19,6 @@ export function User({ match }) {
   const requestedDeletion = user?.requestedDeletion
   const phone = user?.phone
   const doctorNotes = user?.doctorNotes
-
-  useEffect(() => console.log({path, url}), [path, url])
 
   return (
     <div className="user" >

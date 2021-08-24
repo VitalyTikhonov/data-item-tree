@@ -1,4 +1,4 @@
-import { getRandomNumber, download, getRandomArrayMember } from '../utils'
+import { getRandomNumber, getRandomArrayMember } from '../utils'
 import { v4 as getUid } from 'uuid';
 import { masculineRaw, feminineRaw } from './raw-first-names.json'
 import masculineLastNames from './masculine-last-names.json'
@@ -56,10 +56,10 @@ const emailDomains = [
 ]
 
 export const categories = [
-  { caption: "Администраторы", id: "admin" },
-  { caption: "Врачи", id: "doctor" },
-  { caption: "Пациенты", id: "patient" },
-  { caption: "Посетители", id: "visitor" },
+  { caption: "Администраторы", id: "admins" },
+  { caption: "Врачи", id: "doctors" },
+  { caption: "Пациенты", id: "patients" },
+  { caption: "Посетители", id: "visitors" },
 ]
 
 const lorem = new LoremIpsum({
