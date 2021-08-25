@@ -36,12 +36,14 @@
   padding: 10px 0;
   text-align: center;
 
-  border-color: $br-color none none $br-color;
+  border-color: $br-color transparent transparent $br-color;
   border-style: $br-style none none $br-style;
   border-width: $br-width none none $br-width;
-
+  
   &_active {
-    border-right: $br-width $br-style blue;
+    border-color: blue blue transparent blue;
+    border-style: $br-style $br-style none $br-style;
+    border-width: $br-width $br-width none $br-width;
     color: blue;
   }
 }
