@@ -3,7 +3,7 @@ export function getRandomNumber(min, max) {
   return Math.round(randomNumber);
 }
 
-export function download(data, filename, type) {
+export function download(data, filename = 'data.json', type = 'application/json') {
   // https://stackoverflow.com/questions/13405129/javascript-create-and-save-file
   const file = new Blob([data], { type: type });
   if (window.navigator.msSaveOrOpenBlob) // IE10+

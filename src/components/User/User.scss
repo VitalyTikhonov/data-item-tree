@@ -1,6 +1,4 @@
-$br-color: black;
-$br-style: solid;
-$br-width: 2px;
+@import '../../variables';
 
 .user {
   display: flex;
@@ -73,17 +71,4 @@ $br-width: 2px;
 .user__text-area {
   width: 700px;
   height: 200px;
-}
-
-.user__save-button {
-  align-self: flex-end;
-  width: 150px;
-  height: 30px;
-  background-color: transparent;
-
-  border: $br-width $br-style $br-color;
-
-  &:active {
-    border: $br-width $br-style blue;
-  }
 }

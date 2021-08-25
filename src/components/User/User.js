@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import './User.scss';
 import { Route, Switch, NavLink, useRouteMatch, useParams } from "react-router-dom";
-import { verbalizeBoolean, saveToLS, getFromLS } from '../../utils';
+import { verbalizeBoolean } from '../../utils';
 import { v4 as getUid } from 'uuid';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUsersData, selectUsersData } from '../../app/userDataSlice';
 import { categories, blankUser } from '../../data/data-formation';
-
-// const dataToRender = getFromLS()
 
 export function User() {
   const dispatch = useDispatch()
@@ -17,7 +15,6 @@ export function User() {
   const { url } = useRouteMatch();
 
   const user = usersData.find((item) => item.id === requestedId) || blankUser
-  // const [user, setUser] = useState({})
   const {
     id,
     email,
@@ -32,16 +29,6 @@ export function User() {
     doctorNotes,
   } = user
 
-  // const editableFieldRef = useRef(null)
-
-  // function handleClick(event) {
-  //   event.target.setAttribute("contentEditable", "")
-  // }
-
-  // function handleBlur(event) {
-  //   event.target.removeAttribute("contentEditable")
-  // }
-
   function handleChange({ target }) {
     const fieldId = target.id
     let { value } = target
@@ -53,15 +40,6 @@ export function User() {
     console.log({newUsersData})
     dispatch(setUsersData(newUsersData))
   }
-
-  // function handleSaveButtonClick() {
-  // const newData = dataToRender.map((item) => item.id === id ? { ...user, doctorNotes: editableFieldRef.current.textContent } : item)
-  // saveToLS(newData)
-  // }
-
-  // useEffect(() => {
-
-  // }, [usersData])
 
   return (
     <div className="user" >
@@ -128,8 +106,6 @@ export function User() {
 
             </tbody>
           </table>
-
-          {/* <button className="user__save-button" type="button" onClick={handleSaveButtonClick} >Сохранить</button> */}
         </>
       ) : (
         <h2 className="user__headline user__headline_not-found" >Пользователь не найден</h2>
