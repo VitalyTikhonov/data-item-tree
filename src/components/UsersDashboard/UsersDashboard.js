@@ -1,13 +1,12 @@
 import React from 'react';
 import './UsersDashboard.scss';
-import { categories } from '../../data/data-formation';
+import { categories } from '../../data/constants';
 import { Link, useParams } from "react-router-dom";
 import { v4 as getUid } from 'uuid';
-import { useSelector, useDispatch } from 'react-redux';
-import { setUsersData, selectUsersData } from '../../app/userDataSlice';
+import { useSelector } from 'react-redux';
+import { selectUsersData } from '../../app/userDataSlice';
 
 export function UsersDashboard() {
-  // const dispatch = useDispatch()
   const usersData = useSelector(selectUsersData)
   const displayedCategoryId = useParams().id
   const dataToRender = displayedCategoryId ? usersData.filter((item) => item.category.id === displayedCategoryId) : usersData

@@ -1,3 +1,6 @@
+/* Файл использовался для первоначальной сборки JSON-файла */
+
+import { categories } from './constants'
 import { getRandomNumber, download, getRandomArrayMember } from '../utils'
 import { v4 as getUid } from 'uuid';
 import { masculineRaw, feminineRaw } from './raw-first-names.json'
@@ -7,10 +10,22 @@ import { LoremIpsum } from "lorem-ipsum";
 const masculineFirstNames = masculineRaw.filter((i) => i.length > 1)
 const feminineLastNames = masculineLastNames.map((i) => i + "а")
 const feminineFirstNames = feminineRaw.filter((i) => i.length > 1)
-
-// download(JSON.stringify(masculineFirstNames), 'masculine-first-names.json', 'application/json')
-// download(JSON.stringify(feminineLastNames), 'feminine-last-names.json', 'application/json')
-// download(JSON.stringify(feminineFirstNames), 'feminine-first-names.json', 'application/json')
+const emailDomains = [
+  "mail.ru",
+  "yandex.ru",
+  "gmail.com",
+  "yahoo.com",
+]
+const lorem = new LoremIpsum({
+  sentencesPerParagraph: {
+    max: 8,
+    min: 4
+  },
+  wordsPerSentence: {
+    max: 16,
+    min: 4
+  }
+});
 
 let data = []
 
@@ -48,45 +63,6 @@ function transliterate(word) {
   return answer;
 }
 
-export const blankUser = {
-  id: "Нет данных",
-  email: "Нет данных",
-  gender: "Нет данных",
-  firstName: "Нет данных",
-  lastName: "Нет данных",
-  category: "Нет данных",
-  isEmailVerified: "Нет данных",
-  isBanned: "Нет данных",
-  requestedDeletion: "Нет данных",
-  phone: "Нет данных",
-  doctorNotes: "Нет данных",
-}
-
-const emailDomains = [
-  "mail.ru",
-  "yandex.ru",
-  "gmail.com",
-  "yahoo.com",
-]
-
-export const categories = [
-  { caption: "Администраторы", id: "admins" },
-  { caption: "Врачи", id: "doctors" },
-  { caption: "Пациенты", id: "patients" },
-  { caption: "Посетители", id: "visitors" },
-]
-
-const lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 8,
-    min: 4
-  },
-  wordsPerSentence: {
-    max: 16,
-    min: 4
-  }
-});
-
 for (let i = 0; i <= 19; i++) {
   const gender = Boolean(getRandomNumber(0, 1))
   const name = [
@@ -111,6 +87,9 @@ for (let i = 0; i <= 19; i++) {
   )
 }
 
-// download(JSON.stringify(data), 'data.json', 'application/json')
+// download(JSON.stringify(masculineFirstNames), 'masculine-first-names.json', 'application/json')
+// download(JSON.stringify(feminineLastNames), 'feminine-last-names.json', 'application/json')
+// download(JSON.stringify(feminineFirstNames), 'feminine-first-names.json', 'application/json')
+download(JSON.stringify(data), 'data.json', 'application/json')
 
 export default data

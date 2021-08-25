@@ -7,7 +7,7 @@ import { setUsersData, selectUsersData } from './app/userDataSlice';
 import './App.scss';
 import { User } from './components/User/User';
 import { UsersDashboard } from './components/UsersDashboard/UsersDashboard';
-import { categories } from './data/data-formation';
+import { categories } from './data/constants';
 import { download } from './utils';
 
 import data from './data/data.json';
@@ -17,15 +17,9 @@ function App() {
   const usersData = useSelector(selectUsersData)
 
   function handleUpload({ target }) {
-    // console.log('typeof target.value', typeof target.value)
-    // console.log('target.files[0]', target.files[0])
-    // console.log('typeof target.files[0]', typeof target.files[0])
-    // console.log('target.files.item(0)', target.files.item(0))
-    // console.log('typeof target.files.item(0)', typeof target.files.item(0))
     const file = target.files[0]
     const fileReader = new FileReader()
     fileReader.onload = (e) => {
-      // console.log('fileReader.onload', e.target.result)
       dispatch(setUsersData(JSON.parse(e.target.result)))
     }
     fileReader.readAsText(file);
@@ -90,6 +84,7 @@ function App() {
           ))}
         </ul>
       </nav>
+
       <Switch>
         <Route exact path='/' >
           <section className="home" >
@@ -97,16 +92,18 @@ function App() {
             <div className="home__controls" >
               <label className="button button_label" htmlFor="upload-input" >
                 Загрузить
+
                 <input type="file" id="upload-input" hidden onChange={handleUpload} />
               </label>
-              {/* <button className="button" type="file" onClick={handleUploadClick} >Загрузить</button> */}
+
               <button className="button" type="button" onClick={handleDownloadClick} >Скачать</button>
             </div>
           </section>
         </Route>
+
         <Route path='/users/:id' ><User /></Route>
-        {/* <Route path='/users/:id' component={User} /> */}
-        <Route path='/dashboard/:id?' component={UsersDashboard} />
+
+        <Route path='/dashboard/:id?' ><UsersDashboard /></Route>
       </Switch>
     </div>
   );

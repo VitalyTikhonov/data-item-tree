@@ -5,7 +5,7 @@ import { verbalizeBoolean } from '../../utils';
 import { v4 as getUid } from 'uuid';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUsersData, selectUsersData } from '../../app/userDataSlice';
-import { categories, blankUser } from '../../data/data-formation';
+import { categories, blankUser } from '../../data/constants';
 
 export function User() {
   const dispatch = useDispatch()
@@ -35,9 +35,7 @@ export function User() {
     if (fieldId === "category") {
       value = categories.find((item) => item.id === value)
     }
-    console.log({value, fieldId})
     const newUsersData = usersData.map((item) => item.id === id ? { ...user, [fieldId]: value } : item)
-    console.log({newUsersData})
     dispatch(setUsersData(newUsersData))
   }
 
@@ -94,7 +92,7 @@ export function User() {
 
                     <td className="user__cell" >
                       <select className="user__dropdown" id="category" onChange={handleChange} value={category.id} >
-                        {categories.map((item) => <option value={item.id} key={getUid()} >{item.caption}</option>)} {/* selected={item.id === category.id}  */}
+                        {categories.map((item) => <option value={item.id} key={getUid()} >{item.caption}</option>)}
                       </select>
                     </td>
                   </tr>
