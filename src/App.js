@@ -8,13 +8,15 @@ import './App.scss';
 import { User } from './components/User/User';
 import { UsersDashboard } from './components/UsersDashboard/UsersDashboard';
 import { categories } from './data/constants';
-import { download } from './utils';
+import { download, getFromLS } from './utils';
 
 import data from './data/data.json';
 
+const usersDataLS = getFromLS()
+
 function App() {
   const dispatch = useDispatch()
-  const usersData = useSelector(selectUsersData)
+  const usersDataState = useSelector(selectUsersData)
 
   function handleUpload({ target }) {
     const file = target.files[0]
@@ -26,10 +28,14 @@ function App() {
   }
 
   function handleDownloadClick() {
-    download(JSON.stringify(usersData), "users-data.json")
+    download(JSON.stringify(usersDataState), "users-data.json")
   }
 
   useEffect(() => {
+    if (usersDataLS) {
+      dispatch(setUsersData(usersDataLS))
+      return
+    }
     dispatch(setUsersData(data))
   }, [])
 
@@ -68,7 +74,7 @@ function App() {
               </NavLink>
 
               <ul className="app__tree app__tree_level_2 list-unstyling" >
-                {usersData.filter((user) => user.category.id === category.id).map((item) => (
+                {usersDataState.filter((user) => user.category.id === category.id).map((item) => (
                   <li className="app__tree-item" key={getUid()} >
                     <NavLink
                       className="app__tree-link link-unstyling"

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { saveToLS } from '../utils';
 
 const initialState = {
   value: [],
@@ -8,8 +9,9 @@ export const usersDataSlice = createSlice({
   name: 'usersData',
   initialState,
   reducers: {
-    setUsersData: (state, action) => {
-      state.value = action.payload;
+    setUsersData: (state, { payload }) => {
+      state.value = payload;
+      saveToLS(payload)
     },
   },
 });
