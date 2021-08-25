@@ -12,8 +12,6 @@
 
 Дерево это не поля ввода. В дереве мы просто рисуем некоторую “захардкоженную” иерархию объектов. У объектов есть свойства. При выборе элемента в дереве, в правой панели, отображаются поля для просмотра/редактирования свойств.
 
- 
-
 Вопрос 2. Справа какие именно свойства? Что-то по аналогии с инструментами разработчика браузера? То есть, слева форма и на каждом ее элементе слушатель клика, по которому справа выводятся любые свойства, такие как value, placeholder, id?
 
 Свойства могут быть любые. Предположим в дереве мы рисуем пользователей (терминальные элементы дерева), которые сгруппированы по папкам (корневые и промежуточные элементы дерева). Папки могут входить в другие папки. Пусть папки это отделы внутри компании, в которых числятся пользователи. Тогда:
@@ -21,75 +19,3 @@
 Свойства пользователя: Имя пользователя, возраст, адрес;
 Свойства папки: Название отдела.
 Это как пример. Можно придумать что-то свое.
-
-
-https://stackoverflow.com/questions/13405129/javascript-create-and-save-file
-
-  {
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      validate: (email) => validator.isEmail(email),
-    },
-    password: {
-      type: String,
-      required: true,
-      select: false,
-    },
-    firstName: {
-      type: String,
-      required: true,
-      minlength: 2,
-      maxlength: 30,
-    },
-    patronymic: {
-      type: String,
-      required: false,
-      minlength: 2,
-      maxlength: 30,
-    },
-    lastName: {
-      type: String,
-      required: true,
-      minlength: 2,
-      maxlength: 30,
-    },
-    role: {
-      type: String,
-      required: true,
-      minlength: 2,
-      maxlength: 30,
-    },
-    isEmailVerified: {
-      type: Boolean,
-      required: true,
-    },
-    isBanned: {
-      type: Boolean,
-      required: true,
-    },
-    requestedDeletion: {
-      type: Boolean,
-      required: true,
-    },
-    // PIDPermission: {
-    // },
-    phone: {
-      type: String,
-      required: false,
-      unique: true,
-      validate: (phone) => validator.isMobilePhone(phone),
-    },
-    avatar: {
-      type: String,
-      required: false,
-      validate: (link) => validator.isURL(link),
-    },
-    doctorNotes: {
-      type: String,
-      required: false,
-      minlength: 1,
-      maxlength: 5000,
-    },
-  },
