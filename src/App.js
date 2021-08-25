@@ -1,16 +1,25 @@
 import React, { useEffect } from 'react';
 import { Route, Switch, NavLink } from "react-router-dom";
+import { v4 as getUid } from 'uuid';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUsersData, selectUsersData } from './app/userDataSlice';
+// import { saveToLS, getFromLS } from './utils';
+
 import './App.scss';
-// import { Counter } from './features/counter/Counter';
 import { User } from './components/User/User';
 import { UsersDashboard } from './components/UsersDashboard/UsersDashboard';
-import data from './data/data.json';
 import { categories } from './data/data-formation';
-import { saveToLS, getFromLS } from './utils';
-import { v4 as getUid } from 'uuid';
+
+import data from './data/data.json';
 
 function App() {
-  useEffect(() => saveToLS(data), [])
+  const dispatch = useDispatch()
+  // const usersData = useSelector(selectUsersData)
+
+  useEffect(() => {
+    dispatch(setUsersData(data))
+    // saveToLS(data)
+  }, [])
   
   return (
     <div className="app">
@@ -65,7 +74,8 @@ function App() {
       </nav>
       <Switch>
         <Route exact path='/' ><h2 className="app__placeholder-headline" >Выберите пункт из списка слева</h2></Route>
-        <Route path='/users/:id' component={User} />
+        <Route path='/users/:id' ><User /></Route> 
+        {/* <Route path='/users/:id' component={User} /> */}
         <Route path='/dashboard/:id?' component={UsersDashboard} />
       </Switch>
     </div>

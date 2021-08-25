@@ -3,13 +3,18 @@ import './User.scss';
 import { Route, Switch, NavLink, useRouteMatch, useParams } from "react-router-dom";
 import { verbalizeBoolean, saveToLS, getFromLS } from '../../utils';
 import { v4 as getUid } from 'uuid';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUsersData, selectUsersData } from '../../app/userDataSlice';
 
-const dataToRender = getFromLS()
+// const dataToRender = getFromLS()
 
 export function User() {
+  // const dispatch = useDispatch()
+  const usersData = useSelector(selectUsersData)
+
   const requestedId = useParams().id
   const { url } = useRouteMatch();
-  const user = dataToRender.find((item) => item.id === requestedId)
+  const user = usersData.find((item) => item.id === requestedId)
 
   /* Отказался от деструктуризации, чтобы обработать ошибку, которая возникает, если задать в адресной строке несуществующий идентификатор. */
   const id = user?.id
@@ -41,8 +46,8 @@ export function User() {
   // }
 
   function handleSaveButtonClick() {
-    const newData = dataToRender.map((item) => item.id === id ? { ...user, doctorNotes: editableFieldRef.current.textContent } : item)
-    saveToLS(newData)
+    // const newData = dataToRender.map((item) => item.id === id ? { ...user, doctorNotes: editableFieldRef.current.textContent } : item)
+    // saveToLS(newData)
   }
 
   // useEffect(() => {
