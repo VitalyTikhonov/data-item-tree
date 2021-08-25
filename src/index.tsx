@@ -5,7 +5,7 @@ import { App } from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/data-item-tree">
       <App />
     </BrowserRouter>
   </React.StrictMode>,
