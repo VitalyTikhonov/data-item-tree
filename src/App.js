@@ -14,7 +14,7 @@ import data from './data/data.json';
 
 function App() {
   const dispatch = useDispatch()
-  // const usersData = useSelector(selectUsersData)
+  const usersData = useSelector(selectUsersData)
 
   useEffect(() => {
     dispatch(setUsersData(data))
@@ -56,7 +56,7 @@ function App() {
               </NavLink>
 
               <ul className="app__tree app__tree_level_2 list-unstyling" >
-                {data.filter((user) => user.category.id === category.id).map((item) => (
+                {usersData.filter((user) => user.category.id === category.id).map((item) => (
                   <li className="app__tree-item" key={getUid()} >
                     <NavLink
                       className="app__tree-link link-unstyling"

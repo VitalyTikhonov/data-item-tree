@@ -70,14 +70,9 @@ $br-width: 2px;
   max-width: 500px;
 }
 
-.user__cell-paragraph {
+.user__text-area {
   width: 700px;
   height: 200px;
-  margin: 0 0 20px 0;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 }
 
 .user__save-button {
