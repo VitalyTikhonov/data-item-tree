@@ -1,4 +1,4 @@
-import { getRandomNumber, getRandomArrayMember } from '../utils'
+import { getRandomNumber, download, getRandomArrayMember } from '../utils'
 import { v4 as getUid } from 'uuid';
 import { masculineRaw, feminineRaw } from './raw-first-names.json'
 import masculineLastNames from './masculine-last-names.json'
@@ -92,7 +92,7 @@ for (let i = 0; i <= 19; i++) {
       "isBanned": Boolean(getRandomNumber(0, 1)),
       "requestedDeletion": Boolean(getRandomNumber(0, 1)),
       "phone": makeFakeTelNumber(),
-      "doctorNotes": lorem.generateParagraphs(getRandomNumber(1, 3)).split('\n')
+      "doctorNotes": lorem.generateParagraphs(getRandomNumber(1, 3))
     }
   )
 }

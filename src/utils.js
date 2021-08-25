@@ -27,6 +27,13 @@ export function getRandomArrayMember(array) {
 }
 
 export function verbalizeBoolean(boolean) {
-  return boolean ?  "да" : "нет"
+  return boolean ? "да" : "нет"
 }
 
+export function saveToLS(data, name = "users") {
+  localStorage.setItem(name, JSON.stringify(data))
+}
+
+export function getFromLS(name = "users") {
+  return JSON.parse(localStorage.getItem(name))
+}

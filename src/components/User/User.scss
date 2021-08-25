@@ -3,6 +3,8 @@ $br-style: solid;
 $br-width: 2px;
 
 .user {
+  display: flex;
+  flex-direction: column;
   padding: 0 0 0 30px;
   flex-grow: 1;
 }
@@ -69,9 +71,24 @@ $br-width: 2px;
 }
 
 .user__cell-paragraph {
+  width: 700px;
+  height: 200px;
   margin: 0 0 20px 0;
 
   &:last-child {
     margin-bottom: 0;
+  }
+}
+
+.user__save-button {
+  align-self: flex-end;
+  width: 150px;
+  height: 30px;
+  background-color: transparent;
+
+  border: $br-width $br-style $br-color;
+
+  &:active {
+    border: $br-width $br-style blue;
   }
 }

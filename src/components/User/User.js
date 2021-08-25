@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './User.scss';
 import { Route, Switch, NavLink, useRouteMatch, useParams } from "react-router-dom";
-import { verbalizeBoolean } from '../../utils';
+import { verbalizeBoolean, saveToLS, getFromLS } from '../../utils';
+import { v4 as getUid } from 'uuid';
 
-const dataToRender = JSON.parse(localStorage.getItem('users'))
+const dataToRender = getFromLS()
 
 export function User() {
   const requestedId = useParams().id
@@ -22,6 +23,27 @@ export function User() {
   const requestedDeletion = user?.requestedDeletion
   const phone = user?.phone
   const doctorNotes = user?.doctorNotes
+
+  const editableFieldRef = useRef(null)
+
+  function handleClick(event) {
+    event.target.setAttribute("contentEditable", "")
+  }
+
+  function handleBlur(event) {
+    event.target.removeAttribute("contentEditable")
+  }
+
+  // function handleChange(event) {
+  //   const text = event.target.textContent
+  //   const newData = dataToRender.map((item) => item.id === id ? { ...user, doctorNotes: text } : item)
+  //   saveToLS(newData)
+  // }
+
+  function handleSaveButtonClick() {
+    const newData = dataToRender.map((item) => item.id === id ? { ...user, doctorNotes: editableFieldRef.current.textContent } : item)
+    saveToLS(newData)
+  }
 
   // useEffect(() => {
   //   console.log({path, url})
@@ -65,9 +87,19 @@ export function User() {
                   <tr ><th className="user__row-header" >Пол</th><td className="user__cell" >{gender}</td></tr>
                   <tr ><th className="user__row-header" >Эл. почта</th><td className="user__cell" >{email}</td></tr>
                   <tr ><th className="user__row-header" >Телефон</th><td className="user__cell" >{phone}</td></tr>
-                  <tr ><th className="user__row-header" >Примечания</th><td className="user__cell" >
-                    {doctorNotes.map((paragraph) => <p className="user__cell-paragraph" >{paragraph}</p>)}
-                  </td></tr>
+                  <tr >
+                    <th className="user__row-header" >Примечания</th>
+
+                    <td
+                      className="user__cell"
+                      onClick={handleClick}
+                      onBlur={handleBlur}
+                      // onChange={handleChange}
+                      ref={editableFieldRef}
+                    >
+                      {doctorNotes}
+                    </td>
+                  </tr>
                 </Route>
 
                 <Route path={`${url}/meta`} >
@@ -78,8 +110,11 @@ export function User() {
                   <tr ><th className="user__row-header" >Удалил аккаунт?</th><td className="user__cell" >{verbalizeBoolean(requestedDeletion)}</td></tr>
                 </Route>
               </Switch>
+
             </tbody>
           </table>
+
+          <button className="user__save-button" type="button" onClick={handleSaveButtonClick} >Сохранить</button>
         </>
       ) : (
         <h2 className="user__headline user__headline_not-found" >Пользователь не найден</h2>

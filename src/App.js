@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch, NavLink } from "react-router-dom";
 import './App.scss';
 // import { Counter } from './features/counter/Counter';
@@ -6,12 +6,12 @@ import { User } from './components/User/User';
 import { UsersDashboard } from './components/UsersDashboard/UsersDashboard';
 import data from './data/data.json';
 import { categories } from './data/data-formation';
+import { saveToLS, getFromLS } from './utils';
 import { v4 as getUid } from 'uuid';
 
 function App() {
-  localStorage.setItem('users', JSON.stringify(data))
-  const dataToRender = JSON.parse(localStorage.getItem('users'))
-
+  useEffect(() => saveToLS(data), [])
+  
   return (
     <div className="app">
       <nav className="app__menu" >
@@ -47,7 +47,7 @@ function App() {
               </NavLink>
 
               <ul className="app__tree app__tree_level_2 list-unstyling" >
-                {dataToRender.filter((user) => user.category.id === category.id).map((item) => (
+                {data.filter((user) => user.category.id === category.id).map((item) => (
                   <li className="app__tree-item" key={getUid()} >
                     <NavLink
                       className="app__tree-link link-unstyling"
